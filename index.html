@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiFlow | Universal Space Optimization</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Opti<span>Flow</span></div>
+        <div class="hamburger" id="hamburger">☰</div>
+        <div class="nav-links" id="navLinks">
+            <a href="#">Solutions</a>
+            <a href="#">Pricing</a>
+            <a href="mailto:hello@optiflow.com" style="color:var(--accent-green); font-weight:bold;">Contact Sales</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Infrastructure Logic.<br>Zero Hardware.</h1>
+            <p class="mission">
+                We optimize corporate spaces using simple QR integration. 
+                Whether it's parking, hot-desking, or EV charging, 
+                we give you real-time data without installing a single sensor.
+            </p>
+            <p style="color:#64748b; font-size: 0.9rem; margin-top:10px;">👇 Try the interactive demo:</p>
+        </div>
+
+        <div class="hero-visual">
+            <div class="demo-wrapper">
+                
+                <div class="mode-switcher">
+                    <button class="mode-btn" data-mode="parking">Parking</button>
+                    <button class="mode-btn" data-mode="desk">Desk</button>
+                    <button class="mode-btn" data-mode="ev">EV Charge</button>
+                </div>
+
+                <div class="stage">
+                    <div class="sensor" id="sensorLight"></div>
+
+                    <!-- Parking Mode Assets -->
+                    <div class="parking-lines asset-parking"></div>
+                    <div class="car asset-parking" id="parkingCar"></div>
+
+                    <!-- Desk Mode Assets -->
+                    <div class="desk-furniture asset-desk"></div>
+                    <div class="chair asset-desk"></div>
+                    <div class="laptop asset-desk"></div>
+                    <div class="worker asset-desk" id="worker"></div>
+
+                    <!-- EV Mode Assets -->
+                    <div class="ev-station asset-ev"></div>
+                    <div class="ev-plug asset-ev"></div>
+                    <div class="ev-car asset-ev" id="evCar"></div>
+                </div>
+
+                <div class="controls">
+                    <div class="status-box">
+                        Current Status: <span id="statusText" class="status-indicator">Available</span>
+                    </div>
+                    <button class="scan-btn" id="scanBtn">
+                        📷 Simulate QR Scan
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 OptiFlow Solutions. Minimum Viable Product.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+:root {
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --accent-green: #22c55e;
+    --accent-red: #ef4444;
+    --accent-blue: #3b82f6;
+    --slate-800: #1e293b;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- Navigation --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    border-bottom: 1px solid var(--slate-700);
+    background: var(--bg-color);
+    position: relative;
+    z-index: 100;
+}
+
+.logo { 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+}
+
+.logo span { 
+    color: var(--accent-green); 
+}
+
+.nav-links { 
+    display: flex; 
+    gap: 20px; 
+}
+
+.nav-links a { 
+    color: var(--text-color); 
+    text-decoration: none; 
+    opacity: 0.8; 
+    transition: 0.3s; 
+}
+
+.nav-links a:hover { 
+    opacity: 1; 
+    color: var(--accent-green); 
+}
+
+.hamburger { 
+    display: none; 
+    cursor: pointer; 
+    font-size: 1.5rem; 
+}
+
+@media(max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: var(--slate-800);
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid var(--slate-700);
+    }
+    .nav-links.active { 
+        display: flex; 
+    }
+    .hamburger { 
+        display: block; 
+    }
+}
+
+/* --- Hero Section --- */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    min-height: 90vh;
+}
+
+@media(min-width: 1024px) {
+    .hero {
+        flex-direction: row;
+        text-align: left;
+        justify-content: space-between;
+        padding: 40px 8%;
+    }
+    .hero-text { 
+        max-width: 45%; 
+    }
+    .hero-visual { 
+        max-width: 50%; 
+        width: 100%; 
+    }
+}
+
+h1 { 
+    font-size: 2.8rem; 
+    margin-bottom: 20px; 
+    line-height: 1.1; 
+}
+
+p.mission { 
+    font-size: 1.1rem; 
+    color: #94a3b8; 
+    margin-bottom: 30px; 
+}
+
+/* --- THE INTERACTIVE SIMULATION CONTAINER --- */
+.demo-wrapper {
+    background: var(--slate-800);
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid var(--slate-700);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Mode Switcher Tabs */
+.mode-switcher {
+    display: flex;
+    background: var(--slate-700);
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 20px;
+}
+
+.mode-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.mode-btn.active {
+    background: var(--bg-color);
+    color: var(--text-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* The Animation Stage */
+.stage {
+    height: 220px;
+    background-color: #262f40;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 2px dashed rgba(255,255,255,0.1);
+}
+
+/* --- SHARED ELEMENTS --- */
+.sensor {
+    width: 16px;
+    height: 16px;
+    background-color: var(--accent-green);
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    box-shadow: 0 0 10px var(--accent-green);
+    transition: all 0.4s ease;
+    z-index: 10;
+}
+
+.sensor.occupied {
+    background-color: var(--accent-red);
+    box-shadow: 0 0 10px var(--accent-red);
+}
+
+/* --- MODE 1: PARKING (Visuals) --- */
+.parking-lines {
+    width: 100px;
+    height: 160px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-bottom: none;
+    position: absolute;
+    bottom: 0;
+}
+
+.car {
+    width: 60px;
+    height: 100px;
+    background-color: var(--accent-blue);
+    border-radius: 8px;
+    position: absolute;
+    bottom: -150px;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.car::before { 
+    content: ''; 
+    position: absolute; 
+    top: 15px; 
+    left: 5px; 
+    right: 5px; 
+    height: 18px; 
+    background: rgba(0,0,0,0.3); 
+    border-radius: 2px; 
+}
+
+.car::after { 
+    content: ''; 
+    position: absolute; 
+    bottom: 10px; 
+    left: 5px; 
+    right: 5px; 
+    height: 12px; 
+    background: rgba(0,0,0,0.3); 
+    border-radius: 2px; 
+}
+
+/* --- MODE 2: DESK (Visuals) --- */
+.desk-furniture {
+    width: 120px;
+    height: 60px;
+    background: #cbd5e1;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 80px;
+}
+
+.chair {
+    width: 50px;
+    height: 50px;
+    background: #475569;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    left: 35px;
+}
+
+.laptop {
+    width: 40px;
+    height: 30px;
+    background: #334155;
+    position: absolute;
+    bottom: 90px;
+    left: 40px;
+    border-radius: 2px;
+}
+
+.worker {
+    width: 50px;
+    height: 50px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    left: 35px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.4s ease;
+    z-index: 5;
+}
+
+/* --- MODE 3: EV CHARGER (Visuals) --- */
+.ev-station {
+    width: 40px;
+    height: 80px;
+    background: #fff;
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    border-radius: 4px;
+}
+
+.ev-plug {
+    width: 60px;
+    height: 4px;
+    background: var(--accent-green);
+    position: absolute;
+    top: 60px;
+    left: 60px;
+    transform-origin: left;
+    transform: rotate(20deg);
+}
+
+.ev-car {
+    width: 60px;
+    height: 100px;
+    background-color: var(--accent-green);
+    border-radius: 8px;
+    position: absolute;
+    bottom: -150px;
+    right: 40px;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Hide assets by default */
+.asset-parking,
+.asset-desk,
+.asset-ev {
+    display: none;
+}
+
+/* --- Control Section --- */
+.controls {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-box {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin-bottom: 5px;
+}
+
+.status-indicator {
+    font-weight: bold;
+    color: var(--accent-green);
+}
+
+.scan-btn {
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+    width: 100%;
+    justify-content: center;
+}
+
+.scan-btn:hover { 
+    background: var(--accent-green); 
+}
+
+.scan-btn:active { 
+    transform: scale(0.98); 
+}
+
+/* --- Footer --- */
+footer { 
+    padding: 40px; 
+    text-align: center; 
+    border-top: 1px solid var(--slate-700); 
+    color: #64748b; 
+    font-size: 0.9rem;
+}
